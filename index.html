@@ -1,1 +1,327 @@
 
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SECURITY GROUP | Vizual Kataloq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f5f7fc 0%, #e9edf2 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* Əsas konteyner */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* SECURITY GROUP başlıq bölməsi */
+        .security-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .security-header h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #1e2a3a, #0f172a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            word-break: keep-all;
+        }
+
+        .security-header .badge {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            background: rgba(255,255,240,0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* Grid sistemi: hər sətirdə 3 kvadrat (responsive) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            justify-items: center;
+            align-items: stretch;
+        }
+
+        /* Kart (kvadrat) */
+        .card {
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255,255,255,0.5) inset;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            aspect-ratio: 1 / 1; /* tam kvadrat */
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 40px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Link bütün kartı əhatə edir */
+        .card-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* Şəkil konteyneri - kvadratı tam doldurur */
+        .image-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #2d3e4b;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: block;
+        }
+
+        .card:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* BÖYÜK HƏRFLƏRLƏ mətn – şəklin üzərində, mərkəzdə, qalın və monumental */
+        .overlay-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            backdrop-filter: blur(2px);
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .overlay-text span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+            word-break: break-word;
+            font-family: 'Impact', 'Arial Black', 'Segoe UI Black', sans-serif;
+        }
+
+        /* Kiçik ekranlarda mətn ölçüsü dinamik */
+        @media (max-width: 900px) {
+            .grid {
+                gap: 1.2rem;
+            }
+            .overlay-text span {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+            }
+            .security-header h1 {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .overlay-text span {
+                font-size: 1.1rem;
+            }
+            body {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .overlay-text span {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* footer (ixtiyari) */
+        .footer-note {
+            text-align: center;
+            margin-top: 3.8rem;
+            font-size: 0.85rem;
+            color: #4a5b6e;
+            font-weight: 500;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="security-header">
+        <h1>SECURITY GROUP</h1>
+        <div class="badge">⚡ premium xidmət &nbsp;|&nbsp; vizual idarəetmə</div>
+    </div>
+
+    <div class="grid" id="dynamicGrid">
+        <!-- JavaScript ilə 10 kvadrat dinamik yüklənəcək -->
+    </div>
+    <div class="footer-note">
+        <span>Hər kvadrata klik → yeni pəncərədə link açılır</span>
+    </div>
+</div>
+
+<script>
+    // ===============  BURAYA ÖZ MƏLUMATLARINIZI YAZIN  ===============
+    // Hər bir obyekt: img, url, title (böyük hərflərlə görünəcək mətn)
+    // Ümumilikdə 10 ədəd. Şəkil ünvanlarını, linkləri və salon adlarını dəyişin.
+    const items = [
+        {
+            img: "https://picsum.photos/id/104/600/600",   // nümunə şəkil (dəyişdirin)
+            url: "https://example.com/gozelik-salonu",      // klik açılacaq link
+            title: "GÖZƏLLİK SALONU"
+        },
+        {
+            img: "https://picsum.photos/id/20/600/600",
+            url: "https://example.com/pos-market",
+            title: "POS MARKET"
+        },
+        {
+            img: "https://picsum.photos/id/30/600/600",
+            url: "https://example.com/berber",
+            title: "BERBER STUDIO"
+        },
+        {
+            img: "https://picsum.photos/id/225/600/600",
+            url: "https://example.com/spa-center",
+            title: "SPA & WELLNESS"
+        },
+        {
+            img: "https://picsum.photos/id/26/600/600",
+            url: "https://example.com/cafe",
+            title: "KAFE"
+        },
+        {
+            img: "https://picsum.photos/id/169/600/600",
+            url: "https://example.com/fashion",
+            title: "MODA BUTİK"
+        },
+        {
+            img: "https://picsum.photos/id/155/600/600",
+            url: "https://example.com/ayakkabi",
+            title: "AYAKKABI DÜNYASI"
+        },
+        {
+            img: "https://picsum.photos/id/106/600/600",
+            url: "https://example.com/elektronik",
+            title: "ELEKTRONİK"
+        },
+        {
+            img: "https://picsum.photos/id/91/600/600",
+            url: "https://example.com/fitness",
+            title: "FİTNES KLUB"
+        },
+        {
+            img: "https://picsum.photos/id/15/600/600",
+            url: "https://example.com/oyun",
+            title: "OYUN ZALI"
+        }
+    ];
+
+    // Əgər siz tam olaraq 10 fərqli link+şəkilləri daxil edəcəksinizsə,
+    // yuxarıdaki massivi redaktə edin. İstənilən sayda işləyir,
+    // lakin siz 10 ədəd istədiyiniz üçün nümunə 10-dur.
+
+    // Grid daxilində kartları yaradan funksiya
+    function renderGrid() {
+        const gridContainer = document.getElementById('dynamicGrid');
+        if (!gridContainer) return;
+        gridContainer.innerHTML = ''; // təmizlə
+
+        items.forEach(item => {
+            // Şəkil URL və link məcburi olmalıdır, əgər yoxdursa defolt qoy
+            const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/1/600/600";
+            const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
+            const displayTitle = item.title && item.title.trim() !== "" ? item.title.toUpperCase() : "HİZMRT";
+
+            // Kart elementi (kvadrat)
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+
+            // Link (yeni pəncərədə açılacaq)
+            const link = document.createElement('a');
+            link.className = 'card-link';
+            link.href = targetUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+
+            // Şəkil konteyneri + img
+            const imgWrapper = document.createElement('div');
+            imgWrapper.className = 'image-wrapper';
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = displayTitle;
+            img.loading = 'lazy';  // performans üçün
+            // Şəkil yüklənməsə fallback
+            img.onerror = function() {
+                this.src = "https://picsum.photos/id/42/600/600";
+            };
+            imgWrapper.appendChild(img);
+
+            // Böyük hərflərlə mətn (overlay)
+            const overlayDiv = document.createElement('div');
+            overlayDiv.className = 'overlay-text';
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = displayTitle;
+            overlayDiv.appendChild(titleSpan);
+
+            // Linkin içinə yığ
+            link.appendChild(imgWrapper);
+            link.appendChild(overlayDiv);
+            cardDiv.appendChild(link);
+            gridContainer.appendChild(cardDiv);
+        });
+    }
+
+    // Səhifə tam yükləndikdə grid yaransın
+    document.addEventListener('DOMContentLoaded', renderGrid);
+</script>
+
+<!-- Qeyd: Dəyişmək istədiyiniz bütün linklər, şəkil ünvanları və mətnlər yuxarıdakı items massivindədir.
+     Şəkillərin kvadrat formatda olması üçün aspekt oranı CSS ilə təmin edilib. 
+     Hər klik yeni tabda açılacaq. -->
+</body>
+</html>
