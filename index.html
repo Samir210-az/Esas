@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SECURITY GROUP | Vizual Kataloq</title>
+    <title>SECURITY GROUP | Rəngarəng Kataloq</title>
+    <!-- Google Font: fərqli şrift üçün -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,13 +20,12 @@
             min-height: 100vh;
         }
 
-        /* Əsas konteyner */
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* SECURITY GROUP başlıq bölməsi */
+        /* RƏNGARƏNG BAŞLIQ — fərqli şrift + rəngarəng gradient */
         .security-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -33,16 +33,40 @@
         }
 
         .security-header h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #1e2a3a, #0f172a);
+            font-family: 'Bebas Neue', 'Righteous', 'Impact', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, 
+                #ff4d4d, #ff9a3c, #ffd93d, #6bcb77, #4d9de0, #9b59b6, #ff6b6b);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 4px 4px 12px rgba(0,0,0,0.1);
-            text-transform: uppercase;
-            word-break: keep-all;
+            animation: rainbowMove 5s linear infinite;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 0.2rem;
+        }
+
+        /* Rənglərin hərəkət effekti (daha rəngarəng görünüş) */
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Kiçik ekranlarda şrift ölçüsü */
+        @media (max-width: 700px) {
+            .security-header h1 {
+                font-size: 3.2rem;
+                letter-spacing: 3px;
+            }
+        }
+        @media (max-width: 480px) {
+            .security-header h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
         }
 
         .security-header .badge {
@@ -58,7 +82,7 @@
             letter-spacing: 1px;
         }
 
-        /* Grid sistemi: hər sətirdə 3 kvadrat (responsive) */
+        /* Grid: hər sətirdə 3 kvadrat */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -77,7 +101,7 @@
             transition: transform 0.25s ease, box-shadow 0.3s ease;
             cursor: pointer;
             overflow: hidden;
-            aspect-ratio: 1 / 1; /* tam kvadrat */
+            aspect-ratio: 1 / 1;
         }
 
         .card:hover {
@@ -85,7 +109,6 @@
             box-shadow: 0 28px 40px -15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Link bütün kartı əhatə edir */
         .card-link {
             display: block;
             width: 100%;
@@ -94,7 +117,6 @@
             position: relative;
         }
 
-        /* Şəkil konteyneri - kvadratı tam doldurur */
         .image-wrapper {
             width: 100%;
             height: 100%;
@@ -115,17 +137,16 @@
             transform: scale(1.05);
         }
 
-        /* BÖYÜK HƏRFLƏRLƏ mətn – şəklin üzərində, mərkəzdə, qalın və monumental */
+        /* Böyük hərflərlə mətn – şəklin üzərində */
         .overlay-text {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
             backdrop-filter: blur(2px);
             padding: 1.2rem 0.8rem;
             text-align: center;
-            transition: all 0.2s;
         }
 
         .overlay-text span {
@@ -136,11 +157,9 @@
             color: #fff;
             text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
             text-transform: uppercase;
-            word-break: break-word;
             font-family: 'Impact', 'Arial Black', 'Segoe UI Black', sans-serif;
         }
 
-        /* Kiçik ekranlarda mətn ölçüsü dinamik */
         @media (max-width: 900px) {
             .grid {
                 gap: 1.2rem;
@@ -148,9 +167,6 @@
             .overlay-text span {
                 font-size: 1.3rem;
                 letter-spacing: 1px;
-            }
-            .security-header h1 {
-                font-size: 2.6rem;
             }
         }
 
@@ -177,7 +193,6 @@
             }
         }
 
-        /* footer (ixtiyari) */
         .footer-note {
             text-align: center;
             margin-top: 3.8rem;
@@ -193,25 +208,24 @@
 <div class="container">
     <div class="security-header">
         <h1>SECURITY GROUP</h1>
-        <div class="badge">⚡ premium xidmət &nbsp;|&nbsp; vizual idarəetmə</div>
+        <div class="badge">✨ rəngarəng &nbsp;|&nbsp; vizual idarəetmə ✨</div>
     </div>
 
     <div class="grid" id="dynamicGrid">
-        <!-- JavaScript ilə 10 kvadrat dinamik yüklənəcək -->
+        <!-- JavaScript ilə 10 kvadrat yaradılacaq -->
     </div>
     <div class="footer-note">
-        <span>Hər kvadrata klik → yeni pəncərədə link açılır</span>
+        ⚡ Hər kvadrata klik → yeni pəncərədə link açılır
     </div>
 </div>
 
 <script>
-    // ===============  BURAYA ÖZ MƏLUMATLARINIZI YAZIN  ===============
-    // Hər bir obyekt: img, url, title (böyük hərflərlə görünəcək mətn)
-    // Ümumilikdə 10 ədəd. Şəkil ünvanlarını, linkləri və salon adlarını dəyişin.
+    // ===============  BURAYA 10 MƏLUMATI DAXİL EDİN ===============
+    // Hər bir obyektdə: img (şəkil URL), url (link), title (böyük hərflərlə görünəcək mətn)
     const items = [
         {
-            img: "https://picsum.photos/id/104/600/600",   // nümunə şəkil (dəyişdirin)
-            url: "https://example.com/gozelik-salonu",      // klik açılacaq link
+            img: "https://picsum.photos/id/104/600/600",
+            url: "https://example.com/gozelik-salonu",
             title: "GÖZƏLLİK SALONU"
         },
         {
@@ -261,54 +275,42 @@
         }
     ];
 
-    // Əgər siz tam olaraq 10 fərqli link+şəkilləri daxil edəcəksinizsə,
-    // yuxarıdaki massivi redaktə edin. İstənilən sayda işləyir,
-    // lakin siz 10 ədəd istədiyiniz üçün nümunə 10-dur.
-
-    // Grid daxilində kartları yaradan funksiya
     function renderGrid() {
         const gridContainer = document.getElementById('dynamicGrid');
         if (!gridContainer) return;
-        gridContainer.innerHTML = ''; // təmizlə
+        gridContainer.innerHTML = '';
 
         items.forEach(item => {
-            // Şəkil URL və link məcburi olmalıdır, əgər yoxdursa defolt qoy
-            const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/1/600/600";
+            const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/42/600/600";
             const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
-            const displayTitle = item.title && item.title.trim() !== "" ? item.title.toUpperCase() : "HİZMRT";
+            const displayTitle = item.title && item.title.trim() !== "" ? item.title.toUpperCase() : "XİDMƏT";
 
-            // Kart elementi (kvadrat)
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card';
 
-            // Link (yeni pəncərədə açılacaq)
             const link = document.createElement('a');
             link.className = 'card-link';
             link.href = targetUrl;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
 
-            // Şəkil konteyneri + img
             const imgWrapper = document.createElement('div');
             imgWrapper.className = 'image-wrapper';
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = displayTitle;
-            img.loading = 'lazy';  // performans üçün
-            // Şəkil yüklənməsə fallback
+            img.loading = 'lazy';
             img.onerror = function() {
                 this.src = "https://picsum.photos/id/42/600/600";
             };
             imgWrapper.appendChild(img);
 
-            // Böyük hərflərlə mətn (overlay)
             const overlayDiv = document.createElement('div');
             overlayDiv.className = 'overlay-text';
             const titleSpan = document.createElement('span');
             titleSpan.textContent = displayTitle;
             overlayDiv.appendChild(titleSpan);
 
-            // Linkin içinə yığ
             link.appendChild(imgWrapper);
             link.appendChild(overlayDiv);
             cardDiv.appendChild(link);
@@ -316,12 +318,13 @@
         });
     }
 
-    // Səhifə tam yükləndikdə grid yaransın
     document.addEventListener('DOMContentLoaded', renderGrid);
 </script>
 
-<!-- Qeyd: Dəyişmək istədiyiniz bütün linklər, şəkil ünvanları və mətnlər yuxarıdakı items massivindədir.
-     Şəkillərin kvadrat formatda olması üçün aspekt oranı CSS ilə təmin edilib. 
-     Hər klik yeni tabda açılacaq. -->
+<!-- Qeyd: 
+     1. "SECURITY GROUP" fərqli şrift (Bebas Neue) və rəngarəng gradient + hərəkət effekti ilə yazılıb.
+     2. 10 kvadrat şəkil, üzərində böyük hərflərlə mətn.
+     3. Hər klik yeni pəncərədə link açır.
+     4. items massivini öz link və şəkil ünvanlarınızla əvəz edin. -->
 </body>
 </html>
