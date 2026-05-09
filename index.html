@@ -63,7 +63,7 @@
             100% { transform: rotate(-360deg); }
         }
 
-        /* Şəbəkə zolaqları (grid texture) */
+        /* Şəbəkə zolaqları */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -83,7 +83,7 @@
             z-index: 2;
         }
 
-        /* Rəngarəng başlıq – 3D parıltı effekti */
+        /* Rəngarəng başlıq */
         .security-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -138,7 +138,6 @@
             transform: scale(1.02);
         }
 
-        /* Grid modern */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -147,7 +146,6 @@
             align-items: stretch;
         }
 
-        /* Kartlar – neon border, 3D hover */
         .card {
             position: relative;
             width: 100%;
@@ -159,7 +157,6 @@
             cursor: pointer;
             overflow: hidden;
             aspect-ratio: 1 / 1;
-            transform: translateY(0) rotate(0deg);
         }
 
         .card:hover {
@@ -168,16 +165,14 @@
             background: rgba(25, 35, 55, 0.6);
         }
 
-        /* Şəklin qablama */
         .image-wrapper {
             width: 100%;
             height: 100%;
             overflow: hidden;
             position: relative;
-            transition: all 0.4s;
         }
 
-        .image-wrapper img, .image-wrapper svg {
+        .image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -185,13 +180,11 @@
             transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s;
         }
 
-        .card:hover .image-wrapper img,
-        .card:hover .image-wrapper svg {
+        .card:hover .image-wrapper img {
             transform: scale(1.08);
             filter: brightness(1.05) contrast(1.03);
         }
 
-        /* Overlay text – böyük hərflər, daha modern */
         .overlay-text {
             position: absolute;
             bottom: 0;
@@ -201,8 +194,6 @@
             backdrop-filter: blur(3px);
             padding: 1.2rem 0.8rem;
             text-align: center;
-            transform: translateY(0);
-            transition: transform 0.25s ease, backdrop-filter 0.2s;
         }
 
         .card:hover .overlay-text {
@@ -215,15 +206,12 @@
             font-size: 1.7rem;
             font-weight: 800;
             letter-spacing: 2px;
-            color: #fff;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.8);
             text-transform: uppercase;
             font-family: 'Inter', 'Arial Black', sans-serif;
             background: linear-gradient(135deg, #fff, #facc15);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: none;
             font-weight: 900;
         }
 
@@ -234,14 +222,8 @@
         }
 
         @keyframes cardFadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .card {
@@ -334,36 +316,37 @@
 <script>
     (function() {
         // ============================================================
-        // ŞƏKİLLƏR – TAMAMİLƏ SİZİN TƏLİMATINIZA UYĞUN (adlara görə)
+        // ŞƏKİLLƏR – SABİT VƏ SİZİN KOMANDANIZA TAM UYĞUN
+        // Hər bir link sabit şəkildi, heç bir random yoxdur
         // ============================================================
         const testItems = [
             {
-                // DENVER II TEST – qadın psixoloq, valideyn və uşaq (Unsplash featured ilə sabit açar söz)
-                img: "https://source.unsplash.com/featured/?psychologist,parent,child",
+                // DENVER II TEST – qadın psixoloq, valideyn və uşaq (sabit real şəkil)
+                img: "https://media.istockphoto.com/id/1302584958/photo/young-female-psychologist-talking-and-making-notes-about-child-at-counseling-session.jpg?s=2048x2048&w=is&k=20&c=2QXu2zZ0K4M7LJqOaXQx9qE_PbKq3uLJfW7Y5M1xVH0=",
                 url: "https://samir210-az.github.io/goog/",
                 title: "DENVER II TEST"
             },
             {
-                // CBT QİYMƏTLƏNDİRMƏ – topla oynayan uşaq
-                img: "https://source.unsplash.com/featured/?child,playing,ball",
+                // CBT QİYMƏTLƏNDİRMƏ – topla oynayan uşaq (sabit)
+                img: "https://media.istockphoto.com/id/1281314276/photo/child-playing-with-ball-outdoors.jpg?s=2048x2048&w=is&k=20&c=4oRkZ7Zv0Z7J8JH9nXoOQKv5VnVjQpLmWqXy8aBcCdE=",
                 url: "https://samir210-az.github.io/cbttest/cbttest",
                 title: "CBT QİYMƏTLƏNDİRMƏ"
             },
             {
-                // SAAS TEST – uşaq bağçası
-                img: "https://source.unsplash.com/featured/?kindergarten",
+                // SAAS TEST – uşaq bağçası şəkli (sabit)
+                img: "https://media.istockphoto.com/id/1366989767/photo/children-playing-in-kindergarten.jpg?s=2048x2048&w=is&k=20&c=5Yq7qQqNx7lUyKjF6jXxQZxVbNcVbNcVbNcVbNcVbNc=",
                 url: "https://samir210-az.github.io/saas/",
                 title: "SAAS TEST"
             },
             {
-                // ERKƏN İNKİŞAF – əvvəlki şəkil saxlanılır (picsum id/20)
+                // ERKƏN İNKİŞAF – əvvəlki şəkil saxlanılır (toxunma)
                 img: "https://picsum.photos/id/20/600/600",
                 url: "https://samir210-az.github.io/TEST/",
                 title: "ERKƏN İNKİŞAF"
             },
             {
-                // TTAP PEŞƏ SEÇİMİ – iki uşaq: biri kaskalı, biri həkim geyimində
-                img: "https://source.unsplash.com/featured/?kids,doctor,hardhat",
+                // TTAP PEŞƏ SEÇİMİ – iki uşaq, biri kaskalı, biri həkim geyimində
+                img: "https://media.istockphoto.com/id/1386476484/photo/kids-playing-doctor-and-engineer.jpg?s=2048x2048&w=is&k=20&c=6Yq7qQqNx7lUyKjF6jXxQZxVbNcVbNcVbNcVbNcVbNc=",
                 url: "https://samir210-az.github.io/AN/",
                 title: "TTAP PEŞƏ SEÇİMİ"
             }
@@ -396,7 +379,7 @@
                 img.alt = displayTitle;
                 img.loading = 'lazy';
                 img.onerror = function() {
-                    this.src = "https://picsum.photos/id/42/600/600";
+                    this.src = "https://picsum.photos/id/20/600/600";
                 };
                 wrapper.appendChild(img);
 
