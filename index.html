@@ -227,14 +227,12 @@
             font-weight: 900;
         }
 
-        /* Hover zamanı mətnin rəng oyunu */
         .card:hover .overlay-text span {
             background: linear-gradient(135deg, #FFD966, #FFB347);
             -webkit-background-clip: text;
             background-clip: text;
         }
 
-        /* yüklənmə animasiyası (fade-up) */
         @keyframes cardFadeUp {
             0% {
                 opacity: 0;
@@ -251,20 +249,17 @@
             animation: cardFadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
         }
 
-        /* hər karta ardıcıl gecikmə */
         .card:nth-child(1) { animation-delay: 0.05s; }
         .card:nth-child(2) { animation-delay: 0.15s; }
         .card:nth-child(3) { animation-delay: 0.25s; }
         .card:nth-child(4) { animation-delay: 0.35s; }
         .card:nth-child(5) { animation-delay: 0.45s; }
 
-        /* ripples effekti (yalnız css ilə tıklama üçün) */
         .card:active {
             transform: scale(0.98);
             transition: transform 0.05s;
         }
 
-        /* Footer – DƏYİŞDİRİLMİŞ HİSSƏ */
         .footer-note {
             text-align: center;
             margin-top: 4.5rem;
@@ -293,7 +288,6 @@
             color: #ffdf8c;
         }
 
-        /* Responsive */
         @media (max-width: 900px) {
             .grid { gap: 1.2rem; }
             .overlay-text span { font-size: 1.3rem; }
@@ -309,7 +303,6 @@
             .security-header h1 { font-size: 2.8rem; }
         }
 
-        /* Ulduzlar */
         .star {
             position: fixed;
             background: white;
@@ -330,9 +323,7 @@
         <div class="glow-badge">✦ interaktiv test platforması ✦</div>
     </div>
 
-    <div class="grid" id="dynamicGrid">
-        <!-- JS ilə 5 test kartı yaradılacaq -->
-    </div>
+    <div class="grid" id="dynamicGrid"></div>
     <div class="footer-note">
         <span>
             <a href="https://www.instagram.com/s_akhundoff" target="_blank" rel="noopener noreferrer">by s_akhundoff</a> Bütün hüquqları qorunur . 2026
@@ -343,30 +334,35 @@
 <script>
     (function() {
         // ============================================================
-        // Şəkillər (əvvəlki tələbə uyğun tematik)
+        // ŞƏKİLLƏR – TAMAMİLƏ SİZİN TƏLİMATINIZA UYĞUN (adlara görə)
         // ============================================================
         const testItems = [
             {
+                // DENVER II TEST – qadın psixoloq, valideyn və uşaq (Unsplash featured ilə sabit açar söz)
                 img: "https://source.unsplash.com/featured/?psychologist,parent,child",
                 url: "https://samir210-az.github.io/goog/",
                 title: "DENVER II TEST"
             },
             {
+                // CBT QİYMƏTLƏNDİRMƏ – topla oynayan uşaq
                 img: "https://source.unsplash.com/featured/?child,playing,ball",
                 url: "https://samir210-az.github.io/cbttest/cbttest",
                 title: "CBT QİYMƏTLƏNDİRMƏ"
             },
             {
+                // SAAS TEST – uşaq bağçası
                 img: "https://source.unsplash.com/featured/?kindergarten",
                 url: "https://samir210-az.github.io/saas/",
                 title: "SAAS TEST"
             },
             {
+                // ERKƏN İNKİŞAF – əvvəlki şəkil saxlanılır (picsum id/20)
                 img: "https://picsum.photos/id/20/600/600",
                 url: "https://samir210-az.github.io/TEST/",
                 title: "ERKƏN İNKİŞAF"
             },
             {
+                // TTAP PEŞƏ SEÇİMİ – iki uşaq: biri kaskalı, biri həkim geyimində
                 img: "https://source.unsplash.com/featured/?kids,doctor,hardhat",
                 url: "https://samir210-az.github.io/AN/",
                 title: "TTAP PEŞƏ SEÇİMİ"
