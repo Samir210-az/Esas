@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SECURITY GROUP | Rəngarəng Kataloq</title>
-    <!-- Google Font: fərqli şrift üçün -->
+    <title>SECURITY GROUP | Test Kataloqu</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
     <style>
         * {
@@ -25,11 +24,10 @@
             margin: 0 auto;
         }
 
-        /* RƏNGARƏNG BAŞLIQ — fərqli şrift + rəngarəng gradient */
+        /* Rəngarəng başlıq */
         .security-header {
             text-align: center;
             margin-bottom: 3rem;
-            position: relative;
         }
 
         .security-header h1 {
@@ -49,24 +47,16 @@
             margin-bottom: 0.2rem;
         }
 
-        /* Rənglərin hərəkət effekti (daha rəngarəng görünüş) */
         @keyframes rainbowMove {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
 
-        /* Kiçik ekranlarda şrift ölçüsü */
         @media (max-width: 700px) {
-            .security-header h1 {
-                font-size: 3.2rem;
-                letter-spacing: 3px;
-            }
+            .security-header h1 { font-size: 3.2rem; letter-spacing: 3px; }
         }
         @media (max-width: 480px) {
-            .security-header h1 {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
-            }
+            .security-header h1 { font-size: 2.5rem; letter-spacing: 2px; }
         }
 
         .security-header .badge {
@@ -91,7 +81,6 @@
             align-items: stretch;
         }
 
-        /* Kart (kvadrat) */
         .card {
             position: relative;
             width: 100%;
@@ -122,22 +111,23 @@
             height: 100%;
             overflow: hidden;
             position: relative;
-            background: #2d3e4b;
+            background: #1e2f3a;
         }
 
-        .image-wrapper img {
+        .image-wrapper img, .image-wrapper svg {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             display: block;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        .card:hover .image-wrapper img {
-            transform: scale(1.05);
+        .card:hover .image-wrapper img,
+        .card:hover .image-wrapper svg {
+            transform: scale(1.03);
         }
 
-        /* Böyük hərflərlə mətn – şəklin üzərində */
+        /* Şəkil üzərində böyük hərflərlə mətn */
         .overlay-text {
             position: absolute;
             bottom: 0;
@@ -161,36 +151,17 @@
         }
 
         @media (max-width: 900px) {
-            .grid {
-                gap: 1.2rem;
-            }
-            .overlay-text span {
-                font-size: 1.3rem;
-                letter-spacing: 1px;
-            }
+            .grid { gap: 1.2rem; }
+            .overlay-text span { font-size: 1.3rem; letter-spacing: 1px; }
         }
-
         @media (max-width: 700px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            .overlay-text span {
-                font-size: 1.1rem;
-            }
-            body {
-                padding: 1.2rem;
-            }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .overlay-text span { font-size: 1.1rem; }
+            body { padding: 1.2rem; }
         }
-
         @media (max-width: 480px) {
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .overlay-text span {
-                font-size: 1.4rem;
-            }
+            .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .overlay-text span { font-size: 1.4rem; }
         }
 
         .footer-note {
@@ -208,82 +179,62 @@
 <div class="container">
     <div class="security-header">
         <h1>SECURITY GROUP</h1>
-        <div class="badge">✨ rəngarəng &nbsp;|&nbsp; vizual idarəetmə ✨</div>
+        <div class="badge">🎯 test kataloqu &nbsp;|&nbsp; peşəkar diaqnostika</div>
     </div>
 
     <div class="grid" id="dynamicGrid">
-        <!-- JavaScript ilə 10 kvadrat yaradılacaq -->
+        <!-- JS ilə 5 test kartı yaradılacaq -->
     </div>
     <div class="footer-note">
-        ⚡ Hər kvadrata klik → yeni pəncərədə link açılır
+        ✨ Hər kvadrata klik → test yeni pəncərədə açılır ✨
     </div>
 </div>
 
 <script>
-    // ===============  BURAYA 10 MƏLUMATI DAXİL EDİN ===============
-    // Hər bir obyektdə: img (şəkil URL), url (link), title (böyük hərflərlə görünəcək mətn)
-    const items = [
+    // ============================================================
+    // SİZİN 5 TEST LINKİ (adlara uyğun şəkillər seçildi)
+    // Hər test üçün: img, url, title (böyük hərflə görünür)
+    // CBT testi üçün şəkil sizin göndərdiyiniz "1000331202.webp"
+    // mətnindən SVG formatında hazırlanmışdır.
+    // ============================================================
+    const testItems = [
         {
-            img: "https://picsum.photos/id/104/600/600",
-            url: "https://example.com/gozelik-salonu",
-            title: "GÖZƏLLİK SALONU"
+            img: "https://picsum.photos/id/215/600/600",  // uşaq inkişafı (Denver II)
+            url: "https://samir210-az.github.io/goog/",
+            title: "DENVER II TEST"
         },
         {
-            img: "https://picsum.photos/id/20/600/600",
-            url: "https://example.com/pos-market",
-            title: "POS MARKET"
+            // CBT QİYMƏTLƏNDİRMƏ – sizin şəklinizin məzmunu (THOUGHTS, FEELINGS, CBT, PHYSICAL, BEHAVIORS, REACTIONS...)
+            img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Crect width='600' height='600' fill='%231a2a3a'/%3E%3Ctext x='50%25' y='20%25' font-size='28' fill='%23ffd966' text-anchor='middle' font-family='monospace' font-weight='bold'%3ETHOUGHTS%3C/text%3E%3Ctext x='50%25' y='32%25' font-size='28' fill='%23f9a26c' text-anchor='middle'%3EFEELINGS%3C/text%3E%3Ctext x='50%25' y='46%25' font-size='44' fill='%23f4d03f' text-anchor='middle' font-weight='bold'%3ECBT%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='28' fill='%237dcea0' text-anchor='middle'%3EPHYSICAL%3C/text%3E%3Ctext x='50%25' y='72%25' font-size='28' fill='%235dade2' text-anchor='middle'%3EBEHAVIORS%3C/text%3E%3Ctext x='50%25' y='84%25' font-size='27' fill='%23e98a9e' text-anchor='middle'%3EREACTIONS%3C/text%3E%3Ctext x='50%25' y='93%25' font-size='20' fill='%23cdcdcd' text-anchor='middle'%3EFRAMEWORK%3C/text%3E%3C/svg%3E",
+            url: "https://samir210-az.github.io/cbttest/cbttest",
+            title: "CBT QİYMƏTLƏNDİRMƏ"
         },
         {
-            img: "https://picsum.photos/id/30/600/600",
-            url: "https://example.com/berber",
-            title: "BERBER STUDIO"
+            img: "https://picsum.photos/id/26/600/600",   // test/analiz simvolikası (SAAS)
+            url: "https://samir210-az.github.io/saas/",
+            title: "SAAS TEST"
         },
         {
-            img: "https://picsum.photos/id/225/600/600",
-            url: "https://example.com/spa-center",
-            title: "SPA & WELLNESS"
+            img: "https://picsum.photos/id/20/600/600",   // erkən inkişaf (uşaq yazır)
+            url: "https://samir210-az.github.io/TEST/",
+            title: "ERKƏN İNKİŞAF"
         },
         {
-            img: "https://picsum.photos/id/26/600/600",
-            url: "https://example.com/cafe",
-            title: "KAFE"
-        },
-        {
-            img: "https://picsum.photos/id/169/600/600",
-            url: "https://example.com/fashion",
-            title: "MODA BUTİK"
-        },
-        {
-            img: "https://picsum.photos/id/155/600/600",
-            url: "https://example.com/ayakkabi",
-            title: "AYAKKABI DÜNYASI"
-        },
-        {
-            img: "https://picsum.photos/id/106/600/600",
-            url: "https://example.com/elektronik",
-            title: "ELEKTRONİK"
-        },
-        {
-            img: "https://picsum.photos/id/91/600/600",
-            url: "https://example.com/fitness",
-            title: "FİTNES KLUB"
-        },
-        {
-            img: "https://picsum.photos/id/15/600/600",
-            url: "https://example.com/oyun",
-            title: "OYUN ZALI"
+            img: "https://picsum.photos/id/48/600/600",   // peşə seçimi (klaviatura / iş alətləri)
+            url: "https://samir210-az.github.io/AN/",
+            title: "TTAP PEŞƏ SEÇİMİ"
         }
     ];
 
-    function renderGrid() {
+    function renderTestGrid() {
         const gridContainer = document.getElementById('dynamicGrid');
         if (!gridContainer) return;
         gridContainer.innerHTML = '';
 
-        items.forEach(item => {
+        testItems.forEach(item => {
             const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/42/600/600";
             const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
-            const displayTitle = item.title && item.title.trim() !== "" ? item.title.toUpperCase() : "XİDMƏT";
+            const displayTitle = item.title ? item.title.toUpperCase() : "TEST";
 
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card';
@@ -294,16 +245,26 @@
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
 
-            const imgWrapper = document.createElement('div');
-            imgWrapper.className = 'image-wrapper';
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = displayTitle;
-            img.loading = 'lazy';
-            img.onerror = function() {
-                this.src = "https://picsum.photos/id/42/600/600";
-            };
-            imgWrapper.appendChild(img);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-wrapper';
+
+            // Şəkil SVG-dırsa (data:image/svg+xml) onu img kimi yüklə, əks halda adi img.
+            if (imageUrl.startsWith('data:image/svg+xml')) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = displayTitle;
+                img.style.objectFit = 'cover';
+                wrapper.appendChild(img);
+            } else {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = displayTitle;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.src = "https://picsum.photos/id/42/600/600";
+                };
+                wrapper.appendChild(img);
+            }
 
             const overlayDiv = document.createElement('div');
             overlayDiv.className = 'overlay-text';
@@ -311,20 +272,20 @@
             titleSpan.textContent = displayTitle;
             overlayDiv.appendChild(titleSpan);
 
-            link.appendChild(imgWrapper);
+            link.appendChild(wrapper);
             link.appendChild(overlayDiv);
             cardDiv.appendChild(link);
             gridContainer.appendChild(cardDiv);
         });
     }
 
-    document.addEventListener('DOMContentLoaded', renderGrid);
+    document.addEventListener('DOMContentLoaded', renderTestGrid);
 </script>
-
-<!-- Qeyd: 
-     1. "SECURITY GROUP" fərqli şrift (Bebas Neue) və rəngarəng gradient + hərəkət effekti ilə yazılıb.
-     2. 10 kvadrat şəkil, üzərində böyük hərflərlə mətn.
-     3. Hər klik yeni pəncərədə link açır.
-     4. items massivini öz link və şəkil ünvanlarınızla əvəz edin. -->
+<!-- 
+   Qeyd: 
+   - 5 test kartı ardıcıllıqla verilmiş linklərə uyğundur.
+   - CBT kartının şəkli sizin göndərdiyiniz mətn əsasında SVG formatında yaradılmışdır (THOUGHTS, FEELINGS, CBT...).
+   - İstənilən şəkli dəyişmək üçün testItems massivində "img" dəyərini yeniləyin.
+-->
 </body>
 </html>
