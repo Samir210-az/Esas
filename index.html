@@ -264,7 +264,7 @@
             transition: transform 0.05s;
         }
 
-        /* Footer */
+        /* Footer – DƏYİŞDİRİLMİŞ HİSSƏ */
         .footer-note {
             text-align: center;
             margin-top: 4.5rem;
@@ -281,10 +281,16 @@
             border: 1px solid rgba(255,255,200,0.15);
         }
 
-        .footer-note span {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .footer-note a {
+            color: #facc15;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+            color: #ffdf8c;
         }
 
         /* Responsive */
@@ -303,7 +309,7 @@
             .security-header h1 { font-size: 2.8rem; }
         }
 
-        /* Canvas hissəciklər əlavə etmək üçün kiçik ulduz effekti */
+        /* Ulduzlar */
         .star {
             position: fixed;
             background: white;
@@ -328,43 +334,40 @@
         <!-- JS ilə 5 test kartı yaradılacaq -->
     </div>
     <div class="footer-note">
-        <span>✨ hər kvadrata klik → yeni səhifədə test ✨</span>
+        <span>
+            <a href="https://www.instagram.com/s_akhundoff" target="_blank" rel="noopener noreferrer">by s_akhundoff</a> Bütün hüquqları qorunur . 2026
+        </span>
     </div>
 </div>
 
 <script>
     (function() {
         // ============================================================
-        // YALNIZ ŞƏKİLLƏR DƏYİŞDİRİLDİ – hər testin məzmununa uyğun tematik şəkillər
+        // Şəkillər (əvvəlki tələbə uyğun tematik)
         // ============================================================
         const testItems = [
             {
-                // DENVER II TEST – uşaq inkişafı (pediatrik test üçün uşaq blokları ilə oynayır)
-                img: "https://picsum.photos/id/125/600/600",
+                img: "https://source.unsplash.com/featured/?psychologist,parent,child",
                 url: "https://samir210-az.github.io/goog/",
                 title: "DENVER II TEST"
             },
             {
-                // CBT QİYMƏTLƏNDİRMƏ – psixologiya, idrak və hisslər (zehin/düşüncə təmsili)
-                img: "https://picsum.photos/id/152/600/600",
+                img: "https://source.unsplash.com/featured/?child,playing,ball",
                 url: "https://samir210-az.github.io/cbttest/cbttest",
                 title: "CBT QİYMƏTLƏNDİRMƏ"
             },
             {
-                // SAAS TEST – proqram təminatı, test avtomatizasiyası (laptop/ekran)
-                img: "https://picsum.photos/id/0/600/600",
+                img: "https://source.unsplash.com/featured/?kindergarten",
                 url: "https://samir210-az.github.io/saas/",
                 title: "SAAS TEST"
             },
             {
-                // ERKƏN İNKİŞAF – uşağın erkən bacarıqları (rəsm/yaradıcılıq)
                 img: "https://picsum.photos/id/20/600/600",
                 url: "https://samir210-az.github.io/TEST/",
                 title: "ERKƏN İNKİŞAF"
             },
             {
-                // TTAP PEŞƏ SEÇİMİ – karyera, iş alətləri (klaviatura/peşə simvolu)
-                img: "https://picsum.photos/id/48/600/600",
+                img: "https://source.unsplash.com/featured/?kids,doctor,hardhat",
                 url: "https://samir210-az.github.io/AN/",
                 title: "TTAP PEŞƏ SEÇİMİ"
             }
@@ -416,7 +419,6 @@
 
         buildCards();
 
-        // Ulduz fonu (dekorativ)
         function addStars() {
             const starCount = 80;
             for (let i = 0; i < starCount; i++) {
