@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SECURITY GROUP | Test Kataloqu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
+    <title>SECURITY GROUP | İnteraktiv Test Kataloqu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,38 +13,97 @@
         }
 
         body {
-            background: linear-gradient(145deg, #f5f7fc 0%, #e9edf2 100%);
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1.5rem;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             min-height: 100vh;
+            background: #0a0c15;
+            overflow-x: hidden;
+        }
+
+        /* Dinamik gradient fon – canlı hərəkət edən dalğalar */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(125deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 50%, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.1) 50%, transparent 80%);
+            animation: rotateBg 28s linear infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.12), rgba(245, 158, 11, 0.08) 60%, transparent 90%);
+            animation: rotateBgReverse 35s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateBgReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        /* Şəbəkə zolaqları (grid texture) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Rəngarəng başlıq */
+        /* Rəngarəng başlıq – 3D parıltı effekti */
         .security-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            perspective: 600px;
         }
 
         .security-header h1 {
-            font-family: 'Bebas Neue', 'Righteous', 'Impact', cursive;
-            font-size: 5rem;
+            font-family: 'Bebas Neue', 'Impact', cursive;
+            font-size: 5.8rem;
             font-weight: 700;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, 
-                #ff4d4d, #ff9a3c, #ffd93d, #6bcb77, #4d9de0, #9b59b6, #ff6b6b);
-            background-size: 300% auto;
+            background: linear-gradient(135deg, #FF416C, #FF4B2B, #F9D423, #00C9FF, #92FE9D);
+            background-size: 400% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: rainbowMove 5s linear infinite;
-            text-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-            margin-bottom: 0.2rem;
+            animation: rainbowMove 7s linear infinite, floatText 3s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(255,75,43,0.4);
+            transform-style: preserve-3d;
         }
 
         @keyframes rainbowMove {
@@ -52,27 +111,34 @@
             100% { background-position: 200% 50%; }
         }
 
-        @media (max-width: 700px) {
-            .security-header h1 { font-size: 3.2rem; letter-spacing: 3px; }
-        }
-        @media (max-width: 480px) {
-            .security-header h1 { font-size: 2.5rem; letter-spacing: 2px; }
+        @keyframes floatText {
+            0% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-8px) rotateX(2deg); }
+            100% { transform: translateY(0px) rotateX(0deg); }
         }
 
-        .security-header .badge {
+        .glow-badge {
             display: inline-block;
-            margin-top: 12px;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #2c3e50;
-            background: rgba(255,255,240,0.7);
-            backdrop-filter: blur(4px);
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
+            margin-top: 20px;
+            background: rgba(15, 25, 45, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,200,0.2);
+            padding: 0.5rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
             letter-spacing: 1px;
+            color: #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
         }
 
-        /* Grid: hər sətirdə 3 kvadrat */
+        .glow-badge:hover {
+            border-color: #facc15;
+            box-shadow: 0 0 12px rgba(250,204,21,0.4);
+            transform: scale(1.02);
+        }
+
+        /* Grid modern */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -81,37 +147,34 @@
             align-items: stretch;
         }
 
+        /* Kartlar – neon border, 3D hover */
         .card {
             position: relative;
             width: 100%;
-            background: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255,255,255,0.5) inset;
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            background: rgba(20, 30, 45, 0.45);
+            backdrop-filter: blur(12px);
+            border-radius: 36px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
             overflow: hidden;
             aspect-ratio: 1 / 1;
+            transform: translateY(0) rotate(0deg);
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 28px 40px -15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 28px 45px -12px black, 0 0 0 2px rgba(255,215,0,0.3) inset, 0 0 18px rgba(255,215,0,0.2);
+            background: rgba(25, 35, 55, 0.6);
         }
 
-        .card-link {
-            display: block;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            position: relative;
-        }
-
+        /* Şəklin qablama */
         .image-wrapper {
             width: 100%;
             height: 100%;
             overflow: hidden;
             position: relative;
-            background: #1e2f3a;
+            transition: all 0.4s;
         }
 
         .image-wrapper img, .image-wrapper svg {
@@ -119,173 +182,286 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s;
         }
 
         .card:hover .image-wrapper img,
         .card:hover .image-wrapper svg {
-            transform: scale(1.03);
+            transform: scale(1.08);
+            filter: brightness(1.05) contrast(1.03);
         }
 
-        /* Şəkil üzərində böyük hərflərlə mətn */
+        /* Overlay text – böyük hərflər, daha modern */
         .overlay-text {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
-            backdrop-filter: blur(2px);
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+            backdrop-filter: blur(3px);
             padding: 1.2rem 0.8rem;
             text-align: center;
+            transform: translateY(0);
+            transition: transform 0.25s ease, backdrop-filter 0.2s;
+        }
+
+        .card:hover .overlay-text {
+            backdrop-filter: blur(5px);
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
         }
 
         .overlay-text span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 900;
+            display: inline-block;
+            font-size: 1.7rem;
+            font-weight: 800;
             letter-spacing: 2px;
             color: #fff;
-            text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.8);
             text-transform: uppercase;
-            font-family: 'Impact', 'Arial Black', 'Segoe UI Black', sans-serif;
+            font-family: 'Inter', 'Arial Black', sans-serif;
+            background: linear-gradient(135deg, #fff, #facc15);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+            font-weight: 900;
         }
 
+        /* Hover zamanı mətnin rəng oyunu */
+        .card:hover .overlay-text span {
+            background: linear-gradient(135deg, #FFD966, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* yüklənmə animasiyası (fade-up) */
+        @keyframes cardFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            opacity: 0;
+            animation: cardFadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        /* hər karta ardıcıl gecikmə */
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.25s; }
+        .card:nth-child(4) { animation-delay: 0.35s; }
+        .card:nth-child(5) { animation-delay: 0.45s; }
+
+        /* ripples effekti (yalnız css ilə tıklama üçün) */
+        .card:active {
+            transform: scale(0.98);
+            transition: transform 0.05s;
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 4.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #94a3b8;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0.7rem 2rem;
+            border: 1px solid rgba(255,255,200,0.15);
+        }
+
+        .footer-note span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Responsive */
         @media (max-width: 900px) {
             .grid { gap: 1.2rem; }
-            .overlay-text span { font-size: 1.3rem; letter-spacing: 1px; }
+            .overlay-text span { font-size: 1.3rem; }
+            .security-header h1 { font-size: 3.8rem; letter-spacing: 4px; }
         }
         @media (max-width: 700px) {
             .grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-            .overlay-text span { font-size: 1.1rem; }
-            body { padding: 1.2rem; }
+            .overlay-text span { font-size: 1rem; }
+            .container { padding: 1.2rem; }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 500px) {
             .grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .overlay-text span { font-size: 1.4rem; }
+            .security-header h1 { font-size: 2.8rem; }
         }
 
-        .footer-note {
-            text-align: center;
-            margin-top: 3.8rem;
-            font-size: 0.85rem;
-            color: #4a5b6e;
-            font-weight: 500;
-            border-top: 1px solid rgba(0,0,0,0.08);
-            padding-top: 2rem;
+        /* Canvas hissəciklər əlavə etmək istəyənlər üçün kiçik ulduz effekti (sadəcə CSS) */
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
+<div class="animated-bg"></div>
+<div class="noise-overlay"></div>
+
 <div class="container">
     <div class="security-header">
         <h1>SECURITY GROUP</h1>
-        <div class="badge">🎯 test kataloqu &nbsp;|&nbsp; peşəkar diaqnostika</div>
+        <div class="glow-badge">✦ interaktiv test platforması ✦</div>
     </div>
 
     <div class="grid" id="dynamicGrid">
         <!-- JS ilə 5 test kartı yaradılacaq -->
     </div>
     <div class="footer-note">
-        ✨ Hər kvadrata klik → test yeni pəncərədə açılır ✨
+        <span>✨ hər kvadrata klik → yeni səhifədə test ✨</span>
     </div>
 </div>
 
 <script>
-    // ============================================================
-    // SİZİN 5 TEST LINKİ (adlara uyğun şəkillər seçildi)
-    // Hər test üçün: img, url, title (böyük hərflə görünür)
-    // CBT testi üçün şəkil sizin göndərdiyiniz "1000331202.webp"
-    // mətnindən SVG formatında hazırlanmışdır.
-    // ============================================================
-    const testItems = [
-        {
-            img: "https://picsum.photos/id/215/600/600",  // uşaq inkişafı (Denver II)
-            url: "https://samir210-az.github.io/goog/",
-            title: "DENVER II TEST"
-        },
-        {
-            // CBT QİYMƏTLƏNDİRMƏ – sizin şəklinizin məzmunu (THOUGHTS, FEELINGS, CBT, PHYSICAL, BEHAVIORS, REACTIONS...)
-            img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Crect width='600' height='600' fill='%231a2a3a'/%3E%3Ctext x='50%25' y='20%25' font-size='28' fill='%23ffd966' text-anchor='middle' font-family='monospace' font-weight='bold'%3ETHOUGHTS%3C/text%3E%3Ctext x='50%25' y='32%25' font-size='28' fill='%23f9a26c' text-anchor='middle'%3EFEELINGS%3C/text%3E%3Ctext x='50%25' y='46%25' font-size='44' fill='%23f4d03f' text-anchor='middle' font-weight='bold'%3ECBT%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='28' fill='%237dcea0' text-anchor='middle'%3EPHYSICAL%3C/text%3E%3Ctext x='50%25' y='72%25' font-size='28' fill='%235dade2' text-anchor='middle'%3EBEHAVIORS%3C/text%3E%3Ctext x='50%25' y='84%25' font-size='27' fill='%23e98a9e' text-anchor='middle'%3EREACTIONS%3C/text%3E%3Ctext x='50%25' y='93%25' font-size='20' fill='%23cdcdcd' text-anchor='middle'%3EFRAMEWORK%3C/text%3E%3C/svg%3E",
-            url: "https://samir210-az.github.io/cbttest/cbttest",
-            title: "CBT QİYMƏTLƏNDİRMƏ"
-        },
-        {
-            img: "https://picsum.photos/id/26/600/600",   // test/analiz simvolikası (SAAS)
-            url: "https://samir210-az.github.io/saas/",
-            title: "SAAS TEST"
-        },
-        {
-            img: "https://picsum.photos/id/20/600/600",   // erkən inkişaf (uşaq yazır)
-            url: "https://samir210-az.github.io/TEST/",
-            title: "ERKƏN İNKİŞAF"
-        },
-        {
-            img: "https://picsum.photos/id/48/600/600",   // peşə seçimi (klaviatura / iş alətləri)
-            url: "https://samir210-az.github.io/AN/",
-            title: "TTAP PEŞƏ SEÇİMİ"
-        }
-    ];
+    (function() {
+        // ============================================================
+        // 5 TEST MƏLUMATI (linklər olduğu kimi saxlanılır, adlar böyük hərflə)
+        // CBT üçün orijinal məzmun (1000331202.webp-dəki mətn) SVG olaraq saxlanılır
+        // ============================================================
+        const testItems = [
+            {
+                img: "https://picsum.photos/id/215/600/600",
+                url: "https://samir210-az.github.io/goog/",
+                title: "DENVER II TEST"
+            },
+            {
+                // CBT şəkli: Thoughts, Feelings, CBT, Physical, Behaviors, Reactions, Framework
+                img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3ClinearGradient id='gradCbt' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e2a3a'/%3E%3Cstop offset='100%25' stop-color='%232c3e50'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='600' fill='url(%23gradCbt)'/%3E%3Ctext x='50%25' y='18%25' font-size='32' fill='%23ffb347' text-anchor='middle' font-family='monospace' font-weight='bold'%3ETHOUGHTS%3C/text%3E%3Ctext x='50%25' y='30%25' font-size='32' fill='%23ff9f4a' text-anchor='middle'%3EFEELINGS%3C/text%3E%3Ctext x='50%25' y='45%25' font-size='52' fill='%23facc15' text-anchor='middle' font-weight='900'%3ECBT%3C/text%3E%3Ctext x='50%25' y='59%25' font-size='32' fill='%2366cc99' text-anchor='middle'%3EPHYSICAL%3C/text%3E%3Ctext x='50%25' y='71%25' font-size='32' fill='%235dade2' text-anchor='middle'%3EBEHAVIORS%3C/text%3E%3Ctext x='50%25' y='83%25' font-size='30' fill='%23f48fb1' text-anchor='middle'%3EREACTIONS%3C/text%3E%3Ctext x='50%25' y='94%25' font-size='22' fill='%23b0bec5' text-anchor='middle' font-style='italic'%3ECOGNITIVE BEHAVIORAL THERAPY FRAMEWORK%3C/text%3E%3C/svg%3E",
+                url: "https://samir210-az.github.io/cbttest/cbttest",
+                title: "CBT QİYMƏTLƏNDİRMƏ"
+            },
+            {
+                img: "https://picsum.photos/id/26/600/600",
+                url: "https://samir210-az.github.io/saas/",
+                title: "SAAS TEST"
+            },
+            {
+                img: "https://picsum.photos/id/20/600/600",
+                url: "https://samir210-az.github.io/TEST/",
+                title: "ERKƏN İNKİŞAF"
+            },
+            {
+                img: "https://picsum.photos/id/48/600/600",
+                url: "https://samir210-az.github.io/AN/",
+                title: "TTAP PEŞƏ SEÇİMİ"
+            }
+        ];
 
-    function renderTestGrid() {
         const gridContainer = document.getElementById('dynamicGrid');
         if (!gridContainer) return;
-        gridContainer.innerHTML = '';
 
-        testItems.forEach(item => {
-            const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/42/600/600";
-            const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
-            const displayTitle = item.title ? item.title.toUpperCase() : "TEST";
+        // Render funksiyası
+        function buildCards() {
+            gridContainer.innerHTML = '';
+            testItems.forEach((item, idx) => {
+                const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/42/600/600";
+                const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
+                const displayTitle = item.title ? item.title.toUpperCase() : "TEST";
 
-            const cardDiv = document.createElement('div');
-            cardDiv.className = 'card';
+                const card = document.createElement('div');
+                card.className = 'card';
 
-            const link = document.createElement('a');
-            link.className = 'card-link';
-            link.href = targetUrl;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
+                const link = document.createElement('a');
+                link.className = 'card-link';
+                link.href = targetUrl;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
 
-            const wrapper = document.createElement('div');
-            wrapper.className = 'image-wrapper';
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper';
 
-            // Şəkil SVG-dırsa (data:image/svg+xml) onu img kimi yüklə, əks halda adi img.
-            if (imageUrl.startsWith('data:image/svg+xml')) {
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = displayTitle;
-                img.style.objectFit = 'cover';
-                wrapper.appendChild(img);
-            } else {
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = displayTitle;
-                img.loading = 'lazy';
-                img.onerror = function() {
-                    this.src = "https://picsum.photos/id/42/600/600";
-                };
-                wrapper.appendChild(img);
+                if (imageUrl.startsWith('data:image/svg+xml')) {
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = displayTitle;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    wrapper.appendChild(img);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = displayTitle;
+                    img.loading = 'lazy';
+                    img.onerror = function() {
+                        this.src = "https://picsum.photos/id/42/600/600";
+                    };
+                    wrapper.appendChild(img);
+                }
+
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay-text';
+                const span = document.createElement('span');
+                span.textContent = displayTitle;
+                overlay.appendChild(span);
+
+                link.appendChild(wrapper);
+                link.appendChild(overlay);
+                card.appendChild(link);
+                gridContainer.appendChild(card);
+            });
+        }
+
+        buildCards();
+
+        // əlavə interaktivlik: səhifədə dinamik ulduzlar (kiçik hissəcik hissi)
+        function addStars() {
+            const starCount = 80;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.5 + 0.1;
+                star.style.animation = `floatStar ${Math.random() * 20 + 10}s infinite linear`;
+                star.style.background = `rgba(255, 235, 150, ${Math.random() * 0.6})`;
+                document.body.appendChild(star);
             }
-
-            const overlayDiv = document.createElement('div');
-            overlayDiv.className = 'overlay-text';
-            const titleSpan = document.createElement('span');
-            titleSpan.textContent = displayTitle;
-            overlayDiv.appendChild(titleSpan);
-
-            link.appendChild(wrapper);
-            link.appendChild(overlayDiv);
-            cardDiv.appendChild(link);
-            gridContainer.appendChild(cardDiv);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', renderTestGrid);
+        }
+        // yavaş hərəkət edən ulduzlar üçün keyframes əlavə et
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = `
+            @keyframes floatStar {
+                0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+                10% { opacity: 0.5; }
+                90% { opacity: 0.5; }
+                100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+            }
+            .star {
+                position: fixed;
+                pointer-events: none;
+                z-index: 1;
+                border-radius: 50%;
+                background: #ffecb3;
+                box-shadow: 0 0 4px #ffdf8c;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        addStars();
+    })();
 </script>
-<!-- 
-   Qeyd: 
-   - 5 test kartı ardıcıllıqla verilmiş linklərə uyğundur.
-   - CBT kartının şəkli sizin göndərdiyiniz mətn əsasında SVG formatında yaradılmışdır (THOUGHTS, FEELINGS, CBT...).
-   - İstənilən şəkli dəyişmək üçün testItems massivində "img" dəyərini yeniləyin.
--->
 </body>
 </html>
