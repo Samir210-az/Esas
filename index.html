@@ -303,7 +303,7 @@
             .security-header h1 { font-size: 2.8rem; }
         }
 
-        /* Canvas hissəciklər əlavə etmək istəyənlər üçün kiçik ulduz effekti (sadəcə CSS) */
+        /* Canvas hissəciklər əlavə etmək üçün kiçik ulduz effekti */
         .star {
             position: fixed;
             background: white;
@@ -335,32 +335,35 @@
 <script>
     (function() {
         // ============================================================
-        // 5 TEST MƏLUMATI (linklər olduğu kimi saxlanılır, adlar böyük hərflə)
-        // CBT üçün orijinal məzmun (1000331202.webp-dəki mətn) SVG olaraq saxlanılır
+        // YALNIZ ŞƏKİLLƏR DƏYİŞDİRİLDİ – hər testin məzmununa uyğun tematik şəkillər
         // ============================================================
         const testItems = [
             {
-                img: "https://picsum.photos/id/215/600/600",
+                // DENVER II TEST – uşaq inkişafı (pediatrik test üçün uşaq blokları ilə oynayır)
+                img: "https://picsum.photos/id/125/600/600",
                 url: "https://samir210-az.github.io/goog/",
                 title: "DENVER II TEST"
             },
             {
-                // CBT şəkli: Thoughts, Feelings, CBT, Physical, Behaviors, Reactions, Framework
-                img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3ClinearGradient id='gradCbt' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e2a3a'/%3E%3Cstop offset='100%25' stop-color='%232c3e50'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='600' fill='url(%23gradCbt)'/%3E%3Ctext x='50%25' y='18%25' font-size='32' fill='%23ffb347' text-anchor='middle' font-family='monospace' font-weight='bold'%3ETHOUGHTS%3C/text%3E%3Ctext x='50%25' y='30%25' font-size='32' fill='%23ff9f4a' text-anchor='middle'%3EFEELINGS%3C/text%3E%3Ctext x='50%25' y='45%25' font-size='52' fill='%23facc15' text-anchor='middle' font-weight='900'%3ECBT%3C/text%3E%3Ctext x='50%25' y='59%25' font-size='32' fill='%2366cc99' text-anchor='middle'%3EPHYSICAL%3C/text%3E%3Ctext x='50%25' y='71%25' font-size='32' fill='%235dade2' text-anchor='middle'%3EBEHAVIORS%3C/text%3E%3Ctext x='50%25' y='83%25' font-size='30' fill='%23f48fb1' text-anchor='middle'%3EREACTIONS%3C/text%3E%3Ctext x='50%25' y='94%25' font-size='22' fill='%23b0bec5' text-anchor='middle' font-style='italic'%3ECOGNITIVE BEHAVIORAL THERAPY FRAMEWORK%3C/text%3E%3C/svg%3E",
+                // CBT QİYMƏTLƏNDİRMƏ – psixologiya, idrak və hisslər (zehin/düşüncə təmsili)
+                img: "https://picsum.photos/id/152/600/600",
                 url: "https://samir210-az.github.io/cbttest/cbttest",
                 title: "CBT QİYMƏTLƏNDİRMƏ"
             },
             {
-                img: "https://picsum.photos/id/26/600/600",
+                // SAAS TEST – proqram təminatı, test avtomatizasiyası (laptop/ekran)
+                img: "https://picsum.photos/id/0/600/600",
                 url: "https://samir210-az.github.io/saas/",
                 title: "SAAS TEST"
             },
             {
+                // ERKƏN İNKİŞAF – uşağın erkən bacarıqları (rəsm/yaradıcılıq)
                 img: "https://picsum.photos/id/20/600/600",
                 url: "https://samir210-az.github.io/TEST/",
                 title: "ERKƏN İNKİŞAF"
             },
             {
+                // TTAP PEŞƏ SEÇİMİ – karyera, iş alətləri (klaviatura/peşə simvolu)
                 img: "https://picsum.photos/id/48/600/600",
                 url: "https://samir210-az.github.io/AN/",
                 title: "TTAP PEŞƏ SEÇİMİ"
@@ -370,10 +373,9 @@
         const gridContainer = document.getElementById('dynamicGrid');
         if (!gridContainer) return;
 
-        // Render funksiyası
         function buildCards() {
             gridContainer.innerHTML = '';
-            testItems.forEach((item, idx) => {
+            testItems.forEach((item) => {
                 const imageUrl = item.img && item.img.trim() !== "" ? item.img : "https://picsum.photos/id/42/600/600";
                 const targetUrl = item.url && item.url.trim() !== "" ? item.url : "#";
                 const displayTitle = item.title ? item.title.toUpperCase() : "TEST";
@@ -390,24 +392,14 @@
                 const wrapper = document.createElement('div');
                 wrapper.className = 'image-wrapper';
 
-                if (imageUrl.startsWith('data:image/svg+xml')) {
-                    const img = document.createElement('img');
-                    img.src = imageUrl;
-                    img.alt = displayTitle;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'cover';
-                    wrapper.appendChild(img);
-                } else {
-                    const img = document.createElement('img');
-                    img.src = imageUrl;
-                    img.alt = displayTitle;
-                    img.loading = 'lazy';
-                    img.onerror = function() {
-                        this.src = "https://picsum.photos/id/42/600/600";
-                    };
-                    wrapper.appendChild(img);
-                }
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = displayTitle;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.src = "https://picsum.photos/id/42/600/600";
+                };
+                wrapper.appendChild(img);
 
                 const overlay = document.createElement('div');
                 overlay.className = 'overlay-text';
@@ -424,7 +416,7 @@
 
         buildCards();
 
-        // əlavə interaktivlik: səhifədə dinamik ulduzlar (kiçik hissəcik hissi)
+        // Ulduz fonu (dekorativ)
         function addStars() {
             const starCount = 80;
             for (let i = 0; i < starCount; i++) {
@@ -441,7 +433,6 @@
                 document.body.appendChild(star);
             }
         }
-        // yavaş hərəkət edən ulduzlar üçün keyframes əlavə et
         const styleSheet = document.createElement("style");
         styleSheet.textContent = `
             @keyframes floatStar {
